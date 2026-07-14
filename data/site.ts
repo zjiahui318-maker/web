@@ -1,15 +1,15 @@
 export const site = {
   name: "Jiahui Zhang",
-  headline: "Jiauhi Zhang's Web",
+  headline: "Jiahui Zhang's Web",
   role: "Data Analyst / Applied Economist",
   location: "Canberra, ACT",
   github: "https://github.com/zjiahui318-maker",
   portrait: "/portrait.jpg",
   summary:
-    "Detail-oriented Applied Economics and Data Analytics student experienced in administrative support, client communication, and digital content creation. Skilled in Microsoft Office, Java, RStudio, Stata, SQL, and AI-assisted tools, with a practical interest in data, technology, and business communication.",
+    "Data Analyst with academic qualifications in Applied Data Analytics and Applied Economics, combining strong technical capability with economic and statistical modelling expertise. Proficient in R, SQL, Python, Stata, Tableau, MATLAB and advanced Excel, with experience in data cleaning, wrangling, visualization, econometric analysis, forecasting and predictive modeling.",
   quickFacts: [
-    { label: "Focus", value: "Econometrics + analytics" },
-    { label: "Tools", value: "Python, SQL, RStudio, Stata" },
+    { label: "Focus", value: "Modeling + insights" },
+    { label: "Tools", value: "R, SQL, Python, Tableau" },
     { label: "Outcome", value: "+20% followers, +10% engagement" },
   ],
   highlights: [
@@ -24,33 +24,33 @@ export const site = {
       detail: "Refined formatting and image selection for clearer articles.",
     },
     {
-      value: "2026",
-      label: "MAppEcon",
-      detail: "Master of Applied Economics, Australian National University.",
+      value: "AWS",
+      label: "cloud + devops",
+      detail: "Familiar with Git, GitHub, AWS, and CI/CD workflows.",
     },
   ],
   skills: [
     {
-      title: "Core Data / Economics",
-      items: ["Data cleaning", "Data wrangling", "Econometric analysis", "Modeling"],
+      title: "Analytics Programming",
+      items: ["R / RStudio", "SQL / MySQL", "Python", "Stata", "MATLAB", "Java"],
     },
     {
-      title: "Programming / Databases",
-      items: ["Python", "Java", "Haskell", "SQL / MySQL", "RStudio", "Stata"],
+      title: "Modeling + Economics",
+      items: ["Data cleaning", "Data wrangling", "Visualization", "Econometric analysis", "Forecasting", "Predictive modeling"],
     },
     {
-      title: "AI + Productivity",
-      items: ["Claude Code", "Codex", "AI-assisted coding workflows"],
+      title: "Reporting + Platforms",
+      items: ["Tableau", "Gephi", "Advanced Excel", "AWS", "Git", "GitHub", "CI/CD workflows"],
     },
     {
-      title: "Collaboration",
-      items: ["Team communication", "Client support", "Reliable execution"],
+      title: "AI + Development",
+      items: ["OpenAI API", "Claude Code", "Codex", "AI-assisted coding workflows", "Haskell", "SAP"],
     },
   ],
   experience: [
     {
       role: "Assistant Trainee",
-      company: "Builder",
+      company: "Build",
       location: "Shanghai, China",
       period: "12/2020 - 01/2021",
       points: [
@@ -81,7 +81,7 @@ export const site = {
     {
       name: "Personal CV Web",
       description: "A clean personal resume website for Jiahui Zhang.",
-      link: "https://github.com/zjiahui318-maker",
+      link: "https://web-af8ovy3o9-jiahui1.vercel.app/",
     },
   ],
 } as const;
