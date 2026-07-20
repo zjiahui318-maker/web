@@ -30,7 +30,7 @@ export default function Home() {
           <div className="max-w-3xl">
             <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 text-sm text-white/70 backdrop-blur-xl">
               <Sparkles className="h-4 w-4 text-amber-200" aria-hidden="true" />
-              Applied economics x data analytics
+              Data analytics x economics x AI automation
             </div>
 
             <h1 className="max-w-3xl text-[clamp(3.65rem,9vw,8.8rem)] font-semibold leading-[0.9] tracking-normal text-white">
@@ -56,6 +56,12 @@ export default function Home() {
                 View GitHub
                 <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
               </a>
+              <a
+                href={`mailto:${site.email}`}
+                className="inline-flex h-12 items-center justify-center rounded-full border border-white/10 bg-white/[0.055] px-5 text-sm font-semibold text-white/76 transition hover:bg-white/[0.09]"
+              >
+                Email Me
+              </a>
             </div>
           </div>
 
@@ -77,8 +83,9 @@ export default function Home() {
           <div className={`${card} p-6 lg:col-span-5 lg:p-8`}>
             <SectionLabel icon={<LineChart className="h-4 w-4" />} label="Capabilities" />
             <h2 className="mt-5 text-3xl font-semibold tracking-normal text-white sm:text-4xl">
-              Analysis, modeling, and clear business communication.
+              Analysis, automation, and clear business communication.
             </h2>
+            <p className="mt-4 text-sm leading-7 text-white/54">{site.capabilityStatement}</p>
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               {site.skills.map((skill) => (
                 <div key={skill.title} className="rounded-2xl border border-white/10 bg-black/18 p-5">
@@ -108,6 +115,40 @@ export default function Home() {
             </div>
 
             <div className="mt-4 rounded-3xl border border-white/10 bg-black/20 p-6">
+              <p className="text-sm uppercase tracking-[0.2em] text-white/35">Awards + Projects</p>
+              <div className="mt-6 space-y-5">
+                {site.awards.map((award) => (
+                  <p key={award} className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 text-sm leading-7 text-white/62">
+                    {award}
+                  </p>
+                ))}
+                {site.projects.map((project) => (
+                  <a
+                    key={project.name}
+                    href={project.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group block rounded-2xl border border-white/10 bg-white/[0.04] p-5 transition hover:border-cyan-100/30 hover:bg-white/[0.07]"
+                  >
+                    <div className="flex items-center justify-between gap-4">
+                      <h3 className="text-lg font-semibold text-white">{project.name}</h3>
+                      <ArrowUpRight className="h-4 w-4 text-white/45 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-cyan-100" />
+                    </div>
+                    <p className="mt-2 text-sm leading-6 text-white/52">{project.description}</p>
+                    <ul className="mt-4 space-y-2 text-sm leading-6 text-white/48">
+                      {project.points.map((point) => (
+                        <li key={point} className="flex gap-3">
+                          <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-200/70" />
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-4 rounded-3xl border border-white/10 bg-black/20 p-6">
               <p className="text-sm uppercase tracking-[0.2em] text-white/35">Experience</p>
               {site.experience.map((job) => (
                 <article key={`${job.company}-${job.role}`} className="mt-5">
@@ -115,7 +156,7 @@ export default function Home() {
                     <div>
                       <h3 className="text-xl font-semibold text-white">{job.role}</h3>
                       <p className="mt-1 text-white/55">
-                        {job.company} · {job.location}
+                        {job.company} - {job.location}
                       </p>
                     </div>
                     <p className="text-sm text-white/42">{job.period}</p>
@@ -133,7 +174,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className={`${card} p-6 lg:col-span-7 lg:p-8`}>
+          <div className={`${card} p-6 lg:col-span-12 lg:p-8`}>
             <SectionLabel icon={<GraduationCap className="h-4 w-4" />} label="Education" />
             <div className="mt-6 space-y-5">
               {site.education.map((item) => (
@@ -141,8 +182,16 @@ export default function Home() {
                   <div>
                     <h3 className="text-lg font-semibold text-white">{item.degree}</h3>
                     <p className="mt-1 text-sm text-white/52">
-                      {item.school} · {item.location}
+                      {item.school} - {item.location}
                     </p>
+                    <ul className="mt-4 space-y-2 text-sm leading-6 text-white/50">
+                      {item.details.map((detail) => (
+                        <li key={detail} className="flex gap-3">
+                          <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-100/70" />
+                          <span>{detail}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                   <p className="text-sm text-white/42">{item.date}</p>
                 </div>
@@ -150,29 +199,59 @@ export default function Home() {
             </div>
           </div>
 
-          <div className={`${card} p-6 lg:col-span-5 lg:p-8`}>
-            <SectionLabel icon={<Sparkles className="h-4 w-4" />} label="Awards + Project" />
-            <div className="mt-6 space-y-5">
-              {site.awards.map((award) => (
-                <p key={award} className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 text-sm leading-7 text-white/62">
-                  {award}
-                </p>
+          <div className={`${card} p-6 lg:col-span-12 lg:p-8`}>
+            <SectionLabel icon={<Sparkles className="h-4 w-4" />} label="Interests" />
+            <div className="mt-6 space-y-4 text-sm leading-7 text-white/58 sm:text-base sm:leading-8">
+              {site.interests.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
               ))}
-              {site.projects.map((project) => (
-                <a
-                  key={project.name}
-                  href={project.link}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group block rounded-2xl border border-white/10 bg-white/[0.04] p-5 transition hover:border-cyan-100/30 hover:bg-white/[0.07]"
-                >
-                  <div className="flex items-center justify-between gap-4">
-                    <h3 className="text-lg font-semibold text-white">{project.name}</h3>
-                    <ArrowUpRight className="h-4 w-4 text-white/45 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-cyan-100" />
-                  </div>
-                  <p className="mt-2 text-sm leading-6 text-white/52">{project.description}</p>
-                </a>
-              ))}
+            </div>
+          </div>
+
+          <div className={`${card} p-6 lg:col-span-12 lg:p-8`}>
+            <SectionLabel icon={<Sparkles className="h-4 w-4" />} label="Future Agent" />
+            <div className="mt-6 grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
+              <div className="rounded-3xl border border-white/10 bg-black/20 p-6">
+                <p className="text-xs uppercase tracking-[0.2em] text-white/35">Concept</p>
+                <h3 className="mt-4 text-2xl font-semibold text-white">{site.futureAgent.title}</h3>
+                <p className="mt-4 text-sm leading-7 text-white/56">{site.futureAgent.description}</p>
+                <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.04] p-5">
+                  <p className="text-xs uppercase tracking-[0.2em] text-white/35">Roadmap</p>
+                  <ul className="mt-4 space-y-2 text-sm leading-6 text-white/58">
+                    {site.futureAgent.roadmap.map((item) => (
+                      <li key={item}>{item}</li>
+                  ))}
+                  </ul>
+                </div>
+              </div>
+
+              <div className="grid gap-5">
+                <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6">
+                  <p className="text-xs uppercase tracking-[0.2em] text-white/35">Core Capabilities</p>
+                  <ul className="mt-5 space-y-3 text-sm leading-7 text-white/56">
+                    {site.futureAgent.capabilities.map((capability) => (
+                      <li key={capability} className="flex gap-3">
+                        <span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-100/70" />
+                        <span>{capability}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6">
+                  <p className="text-xs uppercase tracking-[0.2em] text-white/35">Process</p>
+                  <ol className="mt-5 space-y-3 text-sm leading-7 text-white/56">
+                    {site.futureAgent.process.map((step, index) => (
+                      <li key={step} className="flex gap-3">
+                        <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full border border-white/10 bg-white/[0.055] text-xs font-semibold text-white/70">
+                          {index + 1}
+                        </span>
+                        <span>{step}</span>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -205,7 +284,7 @@ function PersonalCard() {
         <div className="grid grid-cols-[1fr_auto] gap-4">
           <div className="rounded-3xl border border-white/10 bg-black/22 p-5">
             <p className="text-xs uppercase tracking-[0.2em] text-white/36">Signal</p>
-            <p className="mt-3 text-2xl font-semibold text-white">Data to insight</p>
+            <p className="mt-3 text-2xl font-semibold text-white">Data to action</p>
           </div>
           <div className="grid h-full w-28 place-items-center rounded-3xl border border-white/10 bg-white/[0.045]">
             <div className="grid h-16 w-16 place-items-center rounded-full border border-cyan-100/20 bg-[conic-gradient(from_160deg,rgba(165,243,252,0.95),rgba(187,247,208,0.92),rgba(253,230,138,0.9),rgba(255,255,255,0.12))] p-1">
