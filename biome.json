@@ -1,0 +1,11 @@
+{
+  "files": {
+    "includes": ["**", "!!**/.next", "!!**/.vercel", "!!**/out", "!!**/dist", "!**/next-env.d.ts", "!**/package-lock.json"]
+  },
+  "linter": {
+    "domains": {
+      "next": "recommended",
+      "react": "recommended"
+    }
+  }
+}

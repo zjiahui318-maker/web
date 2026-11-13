@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { ArrowUpRight, GitBranch, GraduationCap, LineChart, MapPin, Sparkles } from "lucide-react";
-import { site } from "@/data/site";
+import { dataAnalysisProject, site } from "@/data/site";
 
 const card =
   "rounded-[28px] border border-white/10 bg-white/[0.055] shadow-2xl shadow-black/30 backdrop-blur-xl";
@@ -15,10 +15,11 @@ export default function Home() {
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(255,255,255,0.055)_1px,transparent_1px)] bg-[length:100%_92px] opacity-30" />
       </div>
 
-      <section className="relative mx-auto flex min-h-screen w-full max-w-7xl flex-col px-5 py-6 sm:px-8 lg:px-10">
-        <nav className="flex items-center justify-between text-sm text-white/60">
-          <a href={site.github} className="font-medium tracking-wide text-white/75">
-            {site.name}
+      <section className="relative mx-auto w-full max-w-7xl px-5 pt-6 sm:px-8 lg:px-10">
+        <nav className="flex items-center justify-between gap-4 text-sm text-white/60">
+          <a href={site.github} className="inline-flex items-center gap-2 font-medium text-white/75 hover:text-white">
+            <GitBranch className="h-4 w-4" aria-hidden="true" />
+            GitHub
           </a>
           <div className="flex items-center gap-2">
             <MapPin className="h-4 w-4 text-emerald-200/80" aria-hidden="true" />
@@ -26,35 +27,28 @@ export default function Home() {
           </div>
         </nav>
 
-        <div className="grid flex-1 items-center gap-8 py-12 lg:grid-cols-[1.02fr_0.98fr] lg:py-8">
-          <div className="max-w-3xl">
-            <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 text-sm text-white/70 backdrop-blur-xl">
-              <Sparkles className="h-4 w-4 text-amber-200" aria-hidden="true" />
-              Data analytics x economics x AI automation
-            </div>
-
-            <h1 className="max-w-3xl text-[clamp(3.65rem,9vw,8.8rem)] font-semibold leading-[0.9] tracking-normal text-white">
-              {site.headline}
+        <div className="grid items-center gap-8 py-10 sm:py-14 md:grid-cols-[1.1fr_0.9fr] lg:gap-14">
+          <div>
+            <h1 className="text-[clamp(2.5rem,6.1vw,5.5rem)] font-semibold leading-none tracking-tight">
+              {site.name}
             </h1>
 
-            <p className="mt-8 text-2xl font-medium tracking-normal text-white/88 sm:text-3xl">
+            <p className="mt-4 text-xl font-medium text-white/88 sm:text-2xl">
               {site.role}
             </p>
-            <p className="mt-5 max-w-2xl text-base leading-8 text-white/58 sm:text-lg">
+            <p className="mt-4 max-w-lg text-base leading-relaxed text-white/72 sm:text-lg">
               {site.summary}
             </p>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-6 flex flex-wrap gap-3">
               <a
-                href={site.github}
+                href={dataAnalysisProject.link}
                 target="_blank"
                 rel="noreferrer"
-                style={{ color: "#07080c" }}
-                className="group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-white px-5 text-sm font-semibold text-black transition hover:bg-cyan-100"
+                className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-white px-5 py-2 text-sm font-semibold text-[#07080c] transition hover:bg-cyan-100"
               >
-                <GitBranch className="h-4 w-4" aria-hidden="true" />
-                View GitHub
-                <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
+                View Data Analysis Project
+                <ArrowUpRight className="h-4 w-4 shrink-0 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
               </a>
               <a
                 href={`mailto:${site.email}`}
@@ -66,15 +60,6 @@ export default function Home() {
           </div>
 
           <PersonalCard />
-        </div>
-
-        <div className="grid gap-4 pb-8 md:grid-cols-3">
-          {site.quickFacts.map((fact) => (
-            <div key={fact.label} className="rounded-2xl border border-white/10 bg-white/[0.045] p-5 backdrop-blur">
-              <p className="text-xs uppercase tracking-[0.2em] text-white/36">{fact.label}</p>
-              <p className="mt-2 text-lg font-medium text-white/86">{fact.value}</p>
-            </div>
-          ))}
         </div>
       </section>
 
@@ -102,10 +87,10 @@ export default function Home() {
 
           <div className={`${card} p-6 lg:col-span-7 lg:p-8`}>
             <SectionLabel icon={<Sparkles className="h-4 w-4" />} label="Proof" />
-            <div className="mt-7 grid gap-4 sm:grid-cols-3">
+            <div className="mt-7 grid grid-cols-[repeat(auto-fit,minmax(min(100%,10rem),1fr))] gap-4">
               {site.highlights.map((item) => (
-                <div key={item.label} className="rounded-3xl border border-white/10 bg-white/[0.045] p-6">
-                  <p className="text-5xl font-semibold tracking-normal text-white">{item.value}</p>
+                <div key={item.label} className="rounded-3xl border border-white/10 bg-white/[0.045] p-5">
+                  <p className="text-4xl font-semibold tabular-nums text-white">{item.value}</p>
                   <p className="mt-3 text-sm font-medium uppercase tracking-[0.18em] text-cyan-100/70">
                     {item.label}
                   </p>
@@ -262,40 +247,18 @@ export default function Home() {
 
 function PersonalCard() {
   return (
-    <aside className={`${card} relative mx-auto w-full max-w-[31rem] overflow-hidden p-4 sm:p-5`}>
-      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-cyan-200/16 to-transparent" />
-      <div className="relative grid gap-4">
-        <div className="relative aspect-[4/5] overflow-hidden rounded-[24px] border border-white/10 bg-white/[0.04]">
-          <Image
-            src={site.portrait}
-            alt={`${site.name} portrait`}
-            fill
-            priority
-            sizes="(max-width: 1024px) 90vw, 460px"
-            className="object-cover object-[50%_28%]"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#07080c] via-transparent to-transparent" />
-          <div className="absolute bottom-5 left-5 right-5">
-            <p className="text-3xl font-semibold tracking-normal">{site.name}</p>
-            <p className="mt-2 text-sm text-white/60">{site.role}</p>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-[1fr_auto] gap-4">
-          <div className="rounded-3xl border border-white/10 bg-black/22 p-5">
-            <p className="text-xs uppercase tracking-[0.2em] text-white/36">Signal</p>
-            <p className="mt-3 text-2xl font-semibold text-white">Data to action</p>
-          </div>
-          <div className="grid h-full w-28 place-items-center rounded-3xl border border-white/10 bg-white/[0.045]">
-            <div className="grid h-16 w-16 place-items-center rounded-full border border-cyan-100/20 bg-[conic-gradient(from_160deg,rgba(165,243,252,0.95),rgba(187,247,208,0.92),rgba(253,230,138,0.9),rgba(255,255,255,0.12))] p-1">
-              <div className="grid h-full w-full place-items-center rounded-full bg-[#090b10] text-sm font-semibold">
-                ANU
-              </div>
-            </div>
-          </div>
-        </div>
+    <div className={`${card} mx-auto w-full max-w-[25rem] p-3 sm:p-4`}>
+      <div className="relative aspect-[4/5] overflow-hidden rounded-[20px] border border-white/10 bg-white/[0.04]">
+        <Image
+          src={site.portrait}
+          alt={`${site.name} portrait`}
+          fill
+          preload
+          sizes="(max-width: 439px) calc(100vw - 66px), 366px"
+          className="object-cover object-[50%_28%]"
+        />
       </div>
-    </aside>
+    </div>
   );
 }
 

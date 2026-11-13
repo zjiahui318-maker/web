@@ -1,6 +1,16 @@
+export const dataAnalysisProject = {
+  name: "Simple Data Analysis Agent",
+  description: "A modular Python data analysis agent using the OpenAI API and Plotly.",
+  link: "https://github.com/zjiahui318-maker/simple-data-analysis-agent",
+  points: [
+    "Coordinates tools for CSV ingestion, data profiling, correlation analysis, linear regression, visualization, LLM interpretation and Markdown report generation.",
+    "Keeps Python responsible for statistical calculations and model metrics while the LLM explains computed results.",
+    "Generates interactive Plotly scatter plots, correlation heatmaps and regression-fit visualizations, with a local rule-based fallback.",
+  ],
+} as const;
+
 export const site = {
   name: "Jiahui Zhang",
-  headline: "Jiahui Zhang's Web",
   role: "Data Analytics | Economics | AI & Automation",
   location: "Canberra, ACT 2602",
   email: "zjiahui318@gmail.com",
@@ -9,12 +19,7 @@ export const site = {
   portfolio: "https://web-navy-xi-670bq1ne58.vercel.app",
   portrait: "/portrait.jpg",
   summary:
-    "Data-driven analyst with a multidisciplinary background in applied economics, data analytics and statistics, with strong capabilities in quantitative analysis, econometric modelling and evidence-based decision-making. Proficient in Python, R, SQL, Stata, Tableau and Advanced Excel, with experience in data cleaning and wrangling, regression analysis, time-series analysis, forecasting and analytical reporting. Built a Python-based data analysis agent that automates profiling, correlation analysis, linear regression, visualisation and report generation, demonstrating the ability to combine analytical methods with practical automation. Skilled at translating complex datasets into clear insights to support business, economic and financial decision-making.",
-  quickFacts: [
-    { label: "Focus", value: "Analytics + AI automation + Economics" },
-    { label: "Tools", value: "Python, R, SQL, Tableau, Java, Excel, Gephi" },
-    { label: "Project", value: "Python data analysis agent + Personal CV Website" },
-  ],
+    "I use Python, SQL and econometrics to analyse data and automate reporting. My Python agent turns CSV files into regression results, interactive charts and Markdown reports.",
   highlights: [
     {
       value: "AI",
@@ -109,16 +114,7 @@ export const site = {
     "ANU Chancellor's International Scholarship recipient.",
   ],
   projects: [
-    {
-      name: "Simple Data Analysis Agent",
-      description: "A modular Python data analysis agent using the OpenAI API and Plotly.",
-      link: "https://github.com/zjiahui318-maker",
-      points: [
-        "Coordinates tools for CSV ingestion, data profiling, correlation analysis, linear regression, visualization, LLM interpretation and Markdown report generation.",
-        "Keeps Python responsible for statistical calculations and model metrics while the LLM explains computed results.",
-        "Generates interactive Plotly scatter plots, correlation heatmaps and regression-fit visualizations, with a local rule-based fallback.",
-      ],
-    },
+    dataAnalysisProject,
     {
       name: "Personal CV Website",
       description: "A clean personal portfolio website for academic background, technical skills and projects.",
