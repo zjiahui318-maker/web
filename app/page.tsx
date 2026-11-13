@@ -1,9 +1,21 @@
 import Image from "next/image";
-import { ArrowUpRight, GitBranch, GraduationCap, LineChart, MapPin, Sparkles } from "lucide-react";
+import { ArrowUp, ArrowUpRight, GitBranch, GraduationCap, LineChart, MapPin, Sparkles } from "lucide-react";
+import CsvAnalysis from "@/app/components/csv-analysis";
+import SelectedProjects from "@/app/components/selected-projects";
 import { dataAnalysisProject, site } from "@/data/site";
 
 const card =
   "rounded-[28px] border border-white/10 bg-white/[0.055] shadow-2xl shadow-black/30 backdrop-blur-xl";
+
+const sectionLinks = [
+  { id: "csv-analysis", label: "CSV Analysis" },
+  { id: "projects", label: "Projects" },
+  { id: "skills", label: "Skills" },
+  { id: "experience", label: "Experience" },
+  { id: "education", label: "Education" },
+  { id: "interests", label: "Interests" },
+  { id: "future-agent", label: "Future Agent" },
+];
 
 export default function Home() {
   return (
@@ -15,8 +27,8 @@ export default function Home() {
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(255,255,255,0.055)_1px,transparent_1px)] bg-[length:100%_92px] opacity-30" />
       </div>
 
-      <section className="relative mx-auto w-full max-w-7xl px-5 pt-6 sm:px-8 lg:px-10">
-        <nav className="flex items-center justify-between gap-4 text-sm text-white/60">
+      <header id="top" tabIndex={-1} className="relative mx-auto w-full max-w-7xl px-5 pt-6 sm:px-8 lg:px-10">
+        <div className="flex items-center justify-between gap-4 text-sm text-white/60">
           <a href={site.github} className="inline-flex items-center gap-2 font-medium text-white/75 hover:text-white">
             <GitBranch className="h-4 w-4" aria-hidden="true" />
             GitHub
@@ -25,27 +37,48 @@ export default function Home() {
             <MapPin className="h-4 w-4 text-emerald-200/80" aria-hidden="true" />
             <span>{site.location}</span>
           </div>
+        </div>
+
+        <nav aria-label="Page sections" className="mt-4 max-w-3xl">
+          <ul className="grid grid-cols-4 gap-1.5 sm:grid-cols-7">
+            {sectionLinks.map(({ id, label }) => (
+              <li key={id}>
+                <a
+                  href={`#${id}`}
+                  className="flex h-full min-h-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.055] px-0.5 py-1 text-center text-xs font-medium leading-tight text-white/80 transition hover:border-cyan-100/30 hover:bg-cyan-100/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-200 sm:px-1.5 sm:text-sm"
+                >
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
         </nav>
 
-        <div className="grid items-center gap-8 py-10 sm:py-14 md:grid-cols-[1.1fr_0.9fr] lg:gap-14">
+        <div className="grid items-center gap-8 pt-6 pb-10 sm:py-14 md:grid-cols-[1.1fr_0.9fr] lg:gap-14">
           <div>
             <h1 className="text-[clamp(2.5rem,6.1vw,5.5rem)] font-semibold leading-none tracking-tight">
               {site.name}
             </h1>
 
-            <p className="mt-4 text-xl font-medium text-white/88 sm:text-2xl">
+            <p className="mt-3 text-xl font-medium text-white/88 sm:mt-4 sm:text-2xl">
               {site.role}
             </p>
-            <p className="mt-4 max-w-lg text-base leading-relaxed text-white/72 sm:text-lg">
+            <p className="mt-3 max-w-lg text-base leading-relaxed text-white/72 sm:mt-4 sm:text-lg">
               {site.summary}
             </p>
 
-            <div className="mt-6 flex flex-wrap gap-3">
+            <div className="mt-4 flex flex-wrap gap-2 sm:mt-6 sm:gap-3">
+              <a
+                href="#csv-analysis"
+                className="inline-flex min-h-11 items-center justify-center rounded-full bg-white px-5 py-2 text-sm font-semibold text-[#07080c] transition hover:bg-cyan-100 sm:min-h-12"
+              >
+                Try CSV Analysis
+              </a>
               <a
                 href={dataAnalysisProject.link}
                 target="_blank"
                 rel="noreferrer"
-                className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-white px-5 py-2 text-sm font-semibold text-[#07080c] transition hover:bg-cyan-100"
+                className="group inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.055] px-5 py-2 text-sm font-semibold text-white/85 transition hover:bg-white/[0.09] sm:min-h-12"
               >
                 View Data Analysis Project
                 <ArrowUpRight className="h-4 w-4 shrink-0 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
@@ -61,13 +94,27 @@ export default function Home() {
 
           <PersonalCard />
         </div>
-      </section>
+      </header>
 
       <section className="relative mx-auto w-full max-w-7xl px-5 pb-20 sm:px-8 lg:px-10">
         <div className="grid gap-4 lg:grid-cols-12">
-          <div className={`${card} p-6 lg:col-span-5 lg:p-8`}>
+          <section id="csv-analysis" aria-labelledby="csv-analysis-heading" tabIndex={-1} className={`${card} scroll-mt-6 p-6 lg:col-span-12 lg:p-8`}>
+            <h2 id="csv-analysis-heading" className="text-3xl font-semibold tracking-tight sm:text-4xl">CSV Analysis</h2>
+            <p className="mt-3 max-w-2xl text-base leading-7 text-white/72">
+              Upload a CSV to profile your data, explore correlations and run a linear regression.
+            </p>
+            <div className="mt-6">
+              <CsvAnalysis />
+            </div>
+          </section>
+
+          <section id="projects" aria-labelledby="projects-heading" tabIndex={-1} className={`${card} scroll-mt-6 p-4 sm:p-6 lg:col-span-12 lg:p-8`}>
+            <SelectedProjects />
+          </section>
+
+          <section id="skills" aria-labelledby="skills-heading" tabIndex={-1} className={`${card} scroll-mt-6 p-6 lg:col-span-5 lg:p-8`}>
             <SectionLabel icon={<LineChart className="h-4 w-4" />} label="Capabilities" />
-            <h2 className="mt-5 text-3xl font-semibold tracking-normal text-white sm:text-4xl">
+            <h2 id="skills-heading" className="mt-5 text-3xl font-semibold tracking-normal text-white sm:text-4xl">
               Analysis, automation, and clear business communication.
             </h2>
             <p className="mt-4 text-sm leading-7 text-white/54">{site.capabilityStatement}</p>
@@ -83,7 +130,7 @@ export default function Home() {
                 </div>
               ))}
             </div>
-          </div>
+          </section>
 
           <div className={`${card} p-6 lg:col-span-7 lg:p-8`}>
             <SectionLabel icon={<Sparkles className="h-4 w-4" />} label="Proof" />
@@ -99,42 +146,19 @@ export default function Home() {
               ))}
             </div>
 
-            <div className="mt-4 rounded-3xl border border-white/10 bg-black/20 p-6">
-              <p className="text-sm uppercase tracking-[0.2em] text-white/35">Awards + Projects</p>
+            <section aria-labelledby="awards-heading" className="mt-4 rounded-3xl border border-white/10 bg-black/20 p-6">
+              <h2 id="awards-heading" className="text-sm font-medium uppercase tracking-[0.2em] text-white/75">Awards</h2>
               <div className="mt-6 space-y-5">
                 {site.awards.map((award) => (
                   <p key={award} className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 text-sm leading-7 text-white/62">
                     {award}
                   </p>
                 ))}
-                {site.projects.map((project) => (
-                  <a
-                    key={project.name}
-                    href={project.link}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="group block rounded-2xl border border-white/10 bg-white/[0.04] p-5 transition hover:border-cyan-100/30 hover:bg-white/[0.07]"
-                  >
-                    <div className="flex items-center justify-between gap-4">
-                      <h3 className="text-lg font-semibold text-white">{project.name}</h3>
-                      <ArrowUpRight className="h-4 w-4 text-white/45 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-cyan-100" />
-                    </div>
-                    <p className="mt-2 text-sm leading-6 text-white/52">{project.description}</p>
-                    <ul className="mt-4 space-y-2 text-sm leading-6 text-white/48">
-                      {project.points.map((point) => (
-                        <li key={point} className="flex gap-3">
-                          <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-200/70" />
-                          <span>{point}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </a>
-                ))}
               </div>
-            </div>
+            </section>
 
-            <div className="mt-4 rounded-3xl border border-white/10 bg-black/20 p-6">
-              <p className="text-sm uppercase tracking-[0.2em] text-white/35">Experience</p>
+            <section id="experience" aria-labelledby="experience-heading" tabIndex={-1} className="mt-4 scroll-mt-6 rounded-3xl border border-white/10 bg-black/20 p-6">
+              <h2 id="experience-heading" className="text-sm font-medium uppercase tracking-[0.2em] text-white/75">Experience</h2>
               {site.experience.map((job) => (
                 <article key={`${job.company}-${job.role}`} className="mt-5">
                   <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
@@ -156,11 +180,11 @@ export default function Home() {
                   </ul>
                 </article>
               ))}
-            </div>
+            </section>
           </div>
 
-          <div className={`${card} p-6 lg:col-span-12 lg:p-8`}>
-            <SectionLabel icon={<GraduationCap className="h-4 w-4" />} label="Education" />
+          <section id="education" aria-labelledby="education-heading" tabIndex={-1} className={`${card} scroll-mt-6 p-6 lg:col-span-12 lg:p-8`}>
+            <SectionLabel headingId="education-heading" icon={<GraduationCap className="h-4 w-4" />} label="Education" />
             <div className="mt-6 space-y-5">
               {site.education.map((item) => (
                 <div key={item.degree} className="flex flex-col gap-2 border-b border-white/10 pb-5 last:border-0 last:pb-0 sm:flex-row sm:justify-between">
@@ -182,19 +206,19 @@ export default function Home() {
                 </div>
               ))}
             </div>
-          </div>
+          </section>
 
-          <div className={`${card} p-6 lg:col-span-12 lg:p-8`}>
-            <SectionLabel icon={<Sparkles className="h-4 w-4" />} label="Interests" />
+          <section id="interests" aria-labelledby="interests-heading" tabIndex={-1} className={`${card} scroll-mt-6 p-6 lg:col-span-12 lg:p-8`}>
+            <SectionLabel headingId="interests-heading" icon={<Sparkles className="h-4 w-4" />} label="Interests" />
             <div className="mt-6 space-y-4 text-sm leading-7 text-white/58 sm:text-base sm:leading-8">
               {site.interests.paragraphs.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
-          </div>
+          </section>
 
-          <div className={`${card} p-6 lg:col-span-12 lg:p-8`}>
-            <SectionLabel icon={<Sparkles className="h-4 w-4" />} label="Future Agent" />
+          <section id="future-agent" aria-labelledby="future-agent-heading" tabIndex={-1} className={`${card} scroll-mt-6 p-6 lg:col-span-12 lg:p-8`}>
+            <SectionLabel headingId="future-agent-heading" icon={<Sparkles className="h-4 w-4" />} label="Future Agent" />
             <div className="mt-6 grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
               <div className="rounded-3xl border border-white/10 bg-black/20 p-6">
                 <p className="text-xs uppercase tracking-[0.2em] text-white/35">Concept</p>
@@ -238,7 +262,14 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </div>
+          </section>
+        </div>
+
+        <div className="mt-6 flex justify-end">
+          <a href="#top" className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/10 px-4 text-sm font-medium text-white/80 transition hover:bg-white/[0.08] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-200">
+            <ArrowUp className="h-4 w-4" aria-hidden="true" />
+            Back to top
+          </a>
         </div>
       </section>
     </main>
@@ -262,11 +293,13 @@ function PersonalCard() {
   );
 }
 
-function SectionLabel({ icon, label }: { icon: React.ReactNode; label: string }) {
+function SectionLabel({ headingId, icon, label }: { headingId?: string; icon: React.ReactNode; label: string }) {
+  const Label = headingId ? "h2" : "div";
+
   return (
-    <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-white/48">
-      <span className="text-cyan-100/70">{icon}</span>
+    <Label id={headingId} className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-white/70">
+      <span aria-hidden="true" className="text-cyan-100/70">{icon}</span>
       {label}
-    </div>
+    </Label>
   );
 }

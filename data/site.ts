@@ -113,26 +113,6 @@ export const site = {
   awards: [
     "ANU Chancellor's International Scholarship recipient.",
   ],
-  projects: [
-    dataAnalysisProject,
-    {
-      name: "Personal CV Website",
-      description: "A clean personal portfolio website for academic background, technical skills and projects.",
-      link: "https://web-navy-xi-670bq1ne58.vercel.app",
-      points: [
-        "Built and deployed a personal portfolio website using iterative debugging, structured problem-solving and AI-assisted development tools.",
-      ],
-    },
-    {
-      name: "Applied Data Mining & Analytics",
-      description: "Academic coursework covering structured and unstructured data analysis.",
-      link: "https://github.com/zjiahui318-maker",
-      points: [
-        "Applied regression, classification, clustering, anomaly detection, association analysis and model evaluation.",
-        "Built practical familiarity with data quality, ETL, web-based data collection, text analytics, sentiment analysis and network analysis.",
-      ],
-    },
-  ],
   interests: {
     paragraphs: [
       "I am highly optimistic about the future of AI, especially the way large language models can help people organize knowledge, automate repetitive analytical work, and turn ideas into usable systems. I am currently self-learning how to use LLMs to structure what I have studied in economics, statistics, data analytics and programming, and I am experimenting with turning these workflows into agents.",
