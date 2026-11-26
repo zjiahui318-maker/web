@@ -1,3 +1,21 @@
+// Australian used-car R project: model_metrics.csv and price_band_metrics.csv.
+// Public aggregate results for the same 2,970 held-out 2023 listings.
+export const usedCarHoldoutScores = [
+  { model: "Random forest", rmse: 19269, within20: 62.3, selected: true },
+  { model: "Gradient boosted trees", rmse: 19475, within20: 58.2 },
+  { model: "Ridge regression", rmse: 22013, within20: 44.6 },
+  { model: "Lasso regression", rmse: 22016, within20: 44.4 },
+  { model: "Linear regression", rmse: 22020, within20: 44.2 },
+  { model: "Training mean (baseline)", rmse: 29511, within20: 25.4 },
+];
+
+export const usedCarPriceBands = [
+  { label: "Under A$20k", listings: 948, mae: 3985 },
+  { label: "A$20k to under A$40k", listings: 1316, mae: 5215 },
+  { label: "A$40k to under A$80k", listings: 584, mae: 11024 },
+  { label: "A$80k and above", listings: 122, mae: 49917, premium: true },
+];
+
 // September 2026 minus September 2025 balances, converted from AUD millions to billions.
 // Based on APRA Monthly ADI Statistics, September 2026 back series, Table 1.
 export const mortgageBankChanges = [

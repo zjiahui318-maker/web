@@ -1,5 +1,6 @@
 import { ArrowUpRight, ChevronDown, FileText } from "lucide-react";
 import { MortgageBankChart, RentInflationCharts } from "@/app/components/selected-project-charts";
+import UsedCarAnalysis from "@/app/components/used-car-analysis";
 import { projectGitHub, selectedProjects } from "@/data/selected-projects";
 
 const action = "inline-flex min-h-10 items-center gap-2 rounded-full border border-white/15 px-3 py-1.5 text-sm font-medium text-white/85 transition hover:border-cyan-100/40 hover:bg-cyan-100/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-200";
@@ -7,6 +8,7 @@ const disclosure = `${action} cursor-pointer list-none [&::-webkit-details-marke
 const copy = "max-w-3xl text-sm leading-7 text-white/75";
 
 const projectDetails = {
+  "used-cars": UsedCarAnalysis,
   mortgage: MortgageDetail,
   credit: CreditDetail,
   rent: RentDetail,
@@ -16,14 +18,14 @@ export default function SelectedProjects() {
   return (
     <>
       <h2 id="projects-heading" className="text-3xl font-semibold tracking-tight sm:text-4xl">Selected Projects</h2>
-      <p className="mt-3 text-sm leading-7 text-white/72">Independent portfolio projects in banking analytics, model evaluation and applied economics.</p>
+      <p className="mt-3 text-sm leading-7 text-white/72">Independent portfolio projects in predictive modelling, banking analytics and applied economics.</p>
       <div className="mt-6 space-y-4">
         {selectedProjects.map((project) => {
           const Detail = projectDetails[project.id];
           const github = projectGitHub[project.id];
 
           return (
-            <article key={project.id} aria-labelledby={`${project.id}-title`} className="min-w-0 rounded-3xl border border-white/10 bg-black/20 p-4 sm:p-6">
+            <article key={project.id} id={project.id} aria-labelledby={`${project.id}-title`} className="min-w-0 scroll-mt-6 rounded-3xl border border-white/10 bg-black/20 p-4 sm:p-6">
               <h3 id={`${project.id}-title`} className="text-xl font-semibold text-white">{project.title}</h3>
               <p className={`mt-2 ${copy}`}>{project.summary}</p>
               <p className="mt-2 max-w-3xl text-sm font-medium leading-7 text-cyan-100">{project.finding}</p>

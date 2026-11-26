@@ -1,4 +1,4 @@
-type ProjectId = "mortgage" | "credit" | "rent";
+type ProjectId = "used-cars" | "mortgage" | "credit" | "rent";
 
 type ProjectLink = { label: string; href: string };
 
@@ -12,8 +12,12 @@ type SelectedProject = {
 };
 
 const portfolioGitHub = "https://github.com/zjiahui318-maker/data-analytics-portfolio";
+const usedCarGitHub = "https://github.com/zjiahui318-maker/australian-used-car-prices-r";
 
 export const projectGitHub: Record<ProjectId, { code: string; notebook?: string }> = {
+  "used-cars": {
+    code: usedCarGitHub,
+  },
   mortgage: {
     code: `${portfolioGitHub}/tree/main/projects/mortgage-refinancing`,
   },
@@ -28,6 +32,17 @@ export const projectGitHub: Record<ProjectId, { code: string; notebook?: string 
 };
 
 export const selectedProjects: SelectedProject[] = [
+  {
+    id: "used-cars",
+    title: "Australian Used-Car Asking Price Analysis (R)",
+    summary: "Used R to compare five models with a baseline on 14,857 Australian used-car listings from 2023.",
+    finding: "Random forest ranked first. On 2,970 held-out listings, 62.3% of its estimates were within 20% of the asking price, falling to 22.1% for cars advertised at A$80,000 or above.",
+    brief: "/projects/Australian_Used_Car_Asking_Prices_R_Report.pdf",
+    sources: [
+      { label: "Kaggle: Australian Vehicle Prices, version 1", href: "https://www.kaggle.com/datasets/nelgiriyewithana/australian-vehicle-prices" },
+      { label: "GitHub: R model scores and charts", href: `${usedCarGitHub}/tree/main/results` },
+    ],
+  },
   {
     id: "mortgage",
     title: "Australian Mortgage Market and Bank Comparison",
